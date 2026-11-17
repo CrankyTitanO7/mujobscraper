@@ -1,0 +1,8 @@
+# should include all the available job urls to pull from
+# can be blank for a blanket internet search
+{
+"urls":{
+"linkedin.com",
+"indeed.com"
+}
+}

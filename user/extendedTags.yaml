@@ -1,0 +1,7 @@
+#  includes extended tags here
+#  priority tags should be in the toml file itself, but
+#  this is more for redundancy and extra storage
+{
+"extendedTags" :
+{"tag a", "tag b"}
+}

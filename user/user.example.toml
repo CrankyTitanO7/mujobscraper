@@ -1,0 +1,22 @@
+# general information
+[general]
+name = "Big John"
+email = "bigjohn@gmail.com"
+address = "123 bigjohnstreet, bigjohn, Connecticut USA 06515"
+current_employment = "bigjohncompany"
+
+# comma separated tags to include/disclude
+[tags]
+include = "internship, 150k, bachelor, bachelor's degree"
+disclude = "senior engineer, senior, entry level, entry"
+
+# paths to certain other files
+[paths]
+# job urls
+urls = "user/urls.yaml"
+# extended tags yaml file
+extendedTags = "user/extendedTags.yaml"
+# data tables for user to edit
+# should work for csv and xlsx or other formats
+jobStatusTable = "user/jobStatusTable.csv"
+jobAppliedTable = "user/jobAppliedTable.csv"
