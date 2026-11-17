@@ -7,4 +7,28 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+
+# Test and lint caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets and local environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# Personal configuration and generated data
+user/user.toml
+user/*.csv
+user/jobDetails/
+user/applications/
+user/resume.*
+!user/resume.example.*
+
+# Editor / OS noise
+*.log
+.DS_Store
