@@ -339,7 +339,7 @@ def draft_answers(
                 system,
                 prompt,
                 temperature=config.llm.temperature,
-                max_tokens=20 if question.kind == AnswerKind.BOOLEAN else 800,
+                max_tokens=300 if question.kind == AnswerKind.BOOLEAN else 1200,
             )
         except LLMError as exc:
             log.warning("Draft failed for %s: %s", question.question_id, exc)

@@ -145,6 +145,16 @@ local OpenAI-compatible server.
 - Increase `[llm].timeout` for slow local models.
 - `doctor --check-llm` prints the underlying error.
 
+### OpenRouter free models return no text
+
+The `openrouter/free` router can select reasoning models. jobscraper asks
+OpenRouter to disable reasoning, and retries without that flag plus a larger
+token budget when reasoning is mandatory. If a specific free model still spends
+the whole response on hidden reasoning, set `JOBSCRAPER_LLM_MODEL` to a
+specific non-reasoning free model from OpenRouter's model list. Base URLs with a
+trailing `/chat/completions`, `/completions`, or `/responses` are normalized
+automatically.
+
 ### Drafting says the AI could not answer
 
 The model returned `[[UNKNOWN]]`, or the response was empty. Add more profile

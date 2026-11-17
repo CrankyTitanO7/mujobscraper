@@ -173,6 +173,27 @@ Aliases are accepted with the camelCase names shown in the example
 No model is downloaded automatically, and collection/filtering never requires
 the LLM.
 
+#### OpenAI-compatible endpoints and OpenRouter
+
+`base_url` may be a provider root or a full endpoint. A trailing
+`/chat/completions`, `/completions`, or `/responses` is stripped before the
+client appends `/chat/completions`, so both forms work:
+
+```dotenv
+JOBSCRAPER_LLM_BASE_URL=https://openrouter.ai/api/v1
+# or a full endpoint such as https://openrouter.ai/api/v1/responses
+JOBSCRAPER_LLM_MODEL=openrouter/free
+JOBSCRAPER_LLM_API_KEY=sk-or-...
+```
+
+`config show` and `doctor` display the normalized base URL.
+
+The `openrouter/free` router may select reasoning models. jobscraper asks
+OpenRouter to disable reasoning so the output budget is spent on the answer. If
+the selected model requires reasoning, the request is retried without that flag
+and with a larger token budget. If drafting still fails, choose a specific
+non-reasoning free model from OpenRouter's model list.
+
 ### `[scraping]`
 
 | Key | Default | Purpose |

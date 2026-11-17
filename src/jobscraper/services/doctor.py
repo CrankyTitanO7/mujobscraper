@@ -90,7 +90,7 @@ def run_doctor(config: Config, *, check_llm: bool = False) -> list[Check]:
     else:
         try:
             provider = build_provider(config)
-            provider.complete("You are a health check.", "Reply with OK.", max_tokens=10)
+            provider.complete("You are a health check.", "Reply with OK.", max_tokens=256)
             checks.append(Check("llm", True, f"{settings.provider} responded"))
         except Exception as exc:  # noqa: BLE001 - diagnostic output
             checks.append(Check("llm", False, str(exc)))

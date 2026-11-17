@@ -28,8 +28,13 @@ Keys come from `[llm].api_key_env`, then `JOBSCRAPER_LLM_API_KEY`, then
 
 - Providers implement a single blocking `complete` method; callers own prompts
   and validation.
-- Requests use the shared `HttpClient` with retries disabled for LLM calls
-  (drafting should fail fast and leave the question untouched).
+- Requests use the shared `HttpClient` with retries disabled for LLM calls.
+  The provider itself retries when a response is truncated before producing
+  text, doubling the token budget up to three attempts.
+- OpenAI-compatible base URLs may include a full endpoint suffix; known
+  `/chat/completions`, `/completions`, and `/responses` suffixes are normalized.
+- OpenRouter requests ask to disable reasoning by default. If the selected free
+  model requires reasoning, the request is retried without that flag.
 - No streaming, no tool calls, and no automatic model downloads.
 - The factory accepts an injected `httpx` transport for offline tests.
 - `utils/errors.LLMError` wraps transport, HTTP, and malformed-response failures.

@@ -12,9 +12,9 @@ from ..config import Config
 from ..utils.errors import LLMUnavailableError
 from .base import LLMProvider
 from .ollama import OllamaProvider
-from .openai import OpenAICompatibleProvider
+from .openai import DEFAULT_BASE_URL, OpenAICompatibleProvider, normalize_openai_base_url
 
-OPENAI_DEFAULT_BASE = "https://api.openai.com/v1"
+OPENAI_DEFAULT_BASE = DEFAULT_BASE_URL
 OLLAMA_DEFAULT_BASE = "http://localhost:11434"
 
 
@@ -57,7 +57,7 @@ def resolve_settings(config: Config, env: Mapping[str, str] | None = None) -> Pr
             provider = "none"
 
     if provider == "openai":
-        base_url = base_url or OPENAI_DEFAULT_BASE
+        base_url = normalize_openai_base_url(base_url or OPENAI_DEFAULT_BASE)
     elif provider == "ollama":
         base_url = ollama_host or base_url or OLLAMA_DEFAULT_BASE
     elif provider == "none":

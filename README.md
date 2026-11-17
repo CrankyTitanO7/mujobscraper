@@ -174,7 +174,11 @@ LLM resolution in `provider = "auto"` mode:
 4. Otherwise → AI features are disabled and collection/filtering still work.
 
 The official OpenAI endpoint without a key is treated as unavailable. No model
-is downloaded automatically.
+is downloaded automatically. OpenAI-compatible base URLs may be given as a root
+or a full endpoint: trailing `/chat/completions`, `/completions`, or `/responses`
+suffixes are normalized. This makes OpenRouter's `openrouter/free` router usable;
+jobscraper also handles free models that require reasoning or exhaust their
+output budget while thinking.
 
 See [docs/configuration.md](docs/configuration.md) for the full reference and
 [user/user.example.toml](user/user.example.toml) for a working example.
