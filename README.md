@@ -1,4 +1,4 @@
-# the jobscraper
+# the manual unified jobscraper
 this is a jobscraping script that allows one to automatically apply to dozens of jobs simultaneously, but in an efficient ai-powered manner and allows you to write your own responses. 
 
 ## pipeline
