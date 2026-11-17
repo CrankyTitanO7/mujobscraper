@@ -1,0 +1,5 @@
+# Extra include keywords merged with [tags].include in user/user.toml.
+# This file is optional; delete it or leave the list empty if unused.
+extendedTags:
+  - remote
+  - new grad

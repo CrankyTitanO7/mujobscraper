@@ -1,8 +1,35 @@
-# should include all the available job urls to pull from
-# can be blank for a blanket internet search
-{
-"urls":{
-"linkedin.com",
-"indeed.com"
-}
-}
+# Job sources for `jobscraper collect`.
+#
+# Direct scraping of LinkedIn/Indeed listing pages is intentionally not
+# implemented (anti-bot measures and terms of service). Use stable public APIs,
+# company boards, or paste an individual posting URL into `generic.urls`.
+#
+# When every list is empty, Arbeitnow and RemoteOK still provide a broad public
+# "blanket" feed. Set their `enabled` flags to false to disable them.
+greenhouse:
+  enabled: true
+  # Public board tokens from boards.greenhouse.io, e.g. [stripe, figma].
+  boards: []
+
+lever:
+  enabled: true
+  # Public company tokens from jobs.lever.co, e.g. [plaid].
+  companies: []
+
+arbeitnow:
+  enabled: true
+  pages: 1
+  # All whitespace-separated search terms must appear.
+  search: ""
+
+remoteok:
+  enabled: true
+  # Optional tag filter; empty means no tag filtering.
+  tags: []
+
+generic:
+  enabled: true
+  # Individual job-posting URLs that expose JSON-LD JobPosting data. Static
+  # pages only; use `questions scan --html` for a saved rendered page.
+  urls: []
+  # - https://example.com/careers/senior-machine-learning-engineer

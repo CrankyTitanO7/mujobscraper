@@ -1,22 +1,71 @@
-# general information
+# General information used in answers and form filling.
 [general]
 name = "Big John"
 email = "bigjohn@gmail.com"
-address = "123 bigjohnstreet, bigjohn, Connecticut USA 06515"
-current_employment = "bigjohncompany"
+phone = ""
+address = "123 Big John Street, Big John, Connecticut 06515, USA"
+current_employment = "Big John Company"
+resume = "user/resume.md"
 
-# comma separated tags to include/disclude
+[general.links]
+linkedin = "https://www.linkedin.com/in/bigjohn"
+github = "https://github.com/bigjohn"
+
+# Include/disclude keywords are matched case-insensitively against the title,
+# company, location, tags, and description. Commas and TOML lists both work.
+# match_mode = "any" keeps a job when at least one include term matches.
 [tags]
-include = "internship, 150k, bachelor, bachelor's degree"
-disclude = "senior engineer, senior, entry level, entry"
+include = ["internship", "machine learning", "bachelor", "bachelor's degree", "150k"]
+disclude = ["senior engineer", "senior", "entry level", "entry"]
+match_mode = "any"
 
-# paths to certain other files
+# Paths are relative to the project root unless absolute.
 [paths]
-# job urls
 urls = "user/urls.yaml"
-# extended tags yaml file
 extendedTags = "user/extendedTags.yaml"
-# data tables for user to edit
-# should work for csv and xlsx or other formats
 jobStatusTable = "user/jobStatusTable.csv"
 jobAppliedTable = "user/jobAppliedTable.csv"
+questionsTable = "user/questions.csv"
+questionBankTable = "user/questionBank.csv"
+jobDetailsDir = "user/jobDetails"
+applicationsDir = "user/applications"
+
+# "auto" uses an OpenAI-compatible endpoint when a key is present, or Ollama
+# when OLLAMA_HOST is set. It never downloads a model.
+[llm]
+provider = "auto"
+base_url = ""
+model = ""
+api_key_env = "JOBSCRAPER_LLM_API_KEY"
+temperature = 0.2
+timeout = 120
+max_resume_chars = 12000
+adapt_reused_answers = true
+refine_extraction = true
+
+[scraping]
+limit = 100
+timeout = 30
+retries = 2
+request_delay_seconds = 0.5
+user_agent = "jobscraper/0.1"
+
+[matching]
+# Minimum similarity (0-1) for reusing a banked answer automatically.
+similarity_threshold = 0.82
+
+[application]
+# Leave blank to use the current calendar year. Duplicate protection applies
+# within this season.
+season = "2026"
+require_approval = true
+duplicate_guard = true
+
+[autofill]
+headless = false
+keep_open = true
+include_drafts = false
+timeout_ms = 30000
+# Leave blank to use Playwright's managed Chromium. Set an absolute path to use
+# a system browser instead, e.g. "/usr/bin/chromium".
+browser_executable = ""
